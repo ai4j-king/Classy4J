@@ -1,0 +1,29 @@
+{
+  "chat": {
+    "name": "Chat Application",
+    "description": "A conversational AI application that can engage in natural dialogue with users",
+    "mode": "chat",
+    "icon": "chat",
+    "icon_background": "#F1F3F5",
+    "default_model": "gpt-3.5-turbo",
+    "default_provider": "openai"
+  },
+  "completion": {
+    "name": "Text Generation",
+    "description": "An AI application that can generate and complete text based on prompts",
+    "mode": "completion",
+    "icon": "text",
+    "icon_background": "#EFF6FF",
+    "default_model": "gpt-3.5-turbo",
+    "default_provider": "openai"
+  },
+  "workflow": {
+    "name": "Workflow Application",
+    "description": "An AI application that can execute predefined workflows and tasks",
+    "mode": "workflow",
+    "icon": "workflow",
+    "icon_background": "#F8F9FA",
+    "default_model": "gpt-3.5-turbo",
+    "default_provider": "openai"
+  }
+}
