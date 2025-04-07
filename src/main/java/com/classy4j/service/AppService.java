@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
+import com.classy4j.entity.bo.ModelConfigReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
@@ -39,20 +41,20 @@ public class AppService {
         }
     }
 
-    public Page<App> getPaginateApps(String userId, String tenantId, int page, int limit) {
+    public Page<App> getPaginateApps(UUID userId, UUID tenantId, int page, int limit) {
         PageRequest pageRequest = PageRequest.of(page - 1, limit);
         return appRepository.findByCreatedByAndTenantId(userId, tenantId, pageRequest);
     }
 
-    public Optional<App> getApp(String id) {
+    public Optional<App> getApp(UUID id) {
         return appRepository.findById(id);
     }
 
     @Transactional
-    public App createApp(String userId, String tenantId, String name, String description, String mode) {
+    public App createApp(UUID userId, UUID tenantId, String name, String description, String mode) {
         // Get default template based on mode
         Map<String, Object> template = getDefaultAppTemplate(mode);
-        
+
         App app = new App();
         app.setTenantId(tenantId);
         app.setName(name);
@@ -61,20 +63,20 @@ public class AppService {
         app.setStatus("normal");
         app.setEnableSite(false);
         app.setEnableApi(false);
-        
+
         // Apply template settings
         if (template != null) {
             app.setIconType("emoji");
             app.setIcon((String) template.get("icon"));
             app.setIconBackground((String) template.get("icon_background"));
         }
-        
+
         LocalDateTime now = LocalDateTime.now();
         app.setCreatedAt(now);
         app.setUpdatedAt(now);
         app.setCreatedBy(userId);
         app.setUpdatedBy(userId);
-        
+
         App appNew = appRepository.save(app);
 
         // Create default model config
@@ -82,14 +84,19 @@ public class AppService {
         modelConfig.setAppId(appNew.getId());
         // Get default model and provider from template
         Map<String, Object> modelTemplate = getDefaultAppTemplate(mode);
-        modelConfig.setModel((String) modelTemplate.get("default_model"));
+        ModelConfigReq.Model model = new ModelConfigReq.Model();
+        model.setMode(mode);
+        model.setName((String) modelTemplate.get("default_model"));
+        model.setProvider((String) modelTemplate.get("default_provider"));
+
         modelConfig.setProvider((String) modelTemplate.get("default_provider"));
-        
+        modelConfig.setModel(model);
+
         modelConfig.setCreatedAt(now);
         modelConfig.setUpdatedAt(now);
         modelConfig.setCreatedBy(userId);
         modelConfig.setUpdatedBy(userId);
-        
+
         appModelConfigRepository.save(modelConfig);
         // Associate model config with app
         appNew.setAppModelConfigId(modelConfig.getId());
@@ -143,7 +150,7 @@ public class AppService {
     }
 
     @Transactional
-    public void deleteApp(String id) {
+    public void deleteApp(UUID id) {
         appRepository.deleteById(id);
     }
 }

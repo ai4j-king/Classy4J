@@ -1,0 +1,120 @@
+GET /api/apps/25574f71-46f5-4b54-9d6e-e196c61a7f1b HTTP/1.1
+
+
+{
+    "id": "9ece34cf-891e-4509-9fed-21907ac30237",
+    "tenantId": "70a70885-be37-49e5-92f6-0fd221e8175b",
+    "name": "Test",
+    "description": "TestBBB",
+    "mode": "chat",
+    "iconType": "emoji",
+    "icon": "\uD83E\uDD16",
+    "iconBackground": "#FFEAD5",
+    "appModelConfigId": "d921fbbb-20ea-4f67-9d3a-7bb9e9e2522c",
+    "appModelConfig": {
+        "id": "d921fbbb-20ea-4f67-9d3a-7bb9e9e2522c",
+        "appId": "9ece34cf-891e-4509-9fed-21907ac30237",
+        "provider": null,
+        "modelId": null,
+        "openingStatement": "",
+        "suggestedQuestions": null,
+        "suggestedQuestionsAfterAnswer": {
+            "enabled": false
+        },
+        "speechToText": {
+            "enabled": false
+        },
+        "textToSpeech": {
+            "enabled": false,
+            "voice": "",
+            "language": ""
+        },
+        "moreLikeThis": null,
+        "model": {
+            "provider": "langgenius/deepseek/deepseek",
+            "name": "deepseek-chat",
+            "mode": "chat",
+            "completion_params": {
+                "stop": []
+            }
+        },
+        "userInputForm": null,
+        "datasetQueryVariable": "",
+        "prePrompt": "提示词BBB",
+        "agentMode": {
+            "enabled": false,
+            "strategy": "function_call",
+            "tools": [],
+            "max_iteration": 5
+        },
+        "sensitiveWordAvoidance": {
+            "enabled": false,
+            "type": "",
+            "configs": []
+        },
+        "retrieverResource": {
+            "enabled": true
+        },
+        "promptType": "simple",
+        "chatPromptConfig": null,
+        "completionPromptConfig": null,
+        "datasetConfigs": {
+            "datasets": {
+                "datasets": []
+            },
+            "retrieval_model": "multiple",
+            "top_k": 4,
+            "reranking_enable": false
+        },
+        "externalDataTools": null,
+        "fileUpload": {
+            "image": {
+                "detail": "high",
+                "enabled": false,
+                "number_limits": 3,
+                "transfer_methods": [
+                    "remote_url",
+                    "local_file"
+                ]
+            },
+            "enabled": false,
+            "allowed_file_types": [],
+            "allowed_file_extensions": [
+                ".JPG",
+                ".JPEG",
+                ".PNG",
+                ".GIF",
+                ".WEBP",
+                ".SVG",
+                ".MP4",
+                ".MOV",
+                ".MPEG",
+                ".MPGA"
+            ],
+            "allowed_file_upload_methods": [
+                "remote_url",
+                "local_file"
+            ],
+            "number_limits": 3
+        },
+        "createdBy": "3fbbacdd-28ba-4e05-a29a-89fd5cfbea5f",
+        "createdAt": "2025-04-03T06:57:08",
+        "updatedBy": "3fbbacdd-28ba-4e05-a29a-89fd5cfbea5f",
+        "updatedAt": "2025-04-03T06:57:08"
+    },
+    "workflowId": null,
+    "status": "normal",
+    "enableSite": true,
+    "enableApi": true,
+    "apiRpm": 0,
+    "apiRph": 0,
+    "tracing": null,
+    "maxActiveRequests": null,
+    "createdAt": "2025-04-02T06:11:57",
+    "updatedAt": "2025-04-02T06:11:57",
+    "createdBy": "3fbbacdd-28ba-4e05-a29a-89fd5cfbea5f",
+    "updatedBy": "3fbbacdd-28ba-4e05-a29a-89fd5cfbea5f",
+    "public": false,
+    "universal": false,
+    "demo": false
+}

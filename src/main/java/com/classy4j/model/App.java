@@ -1,10 +1,14 @@
 package com.classy4j.model;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
+import com.classy4j.config.UUIDAttributeConverter;
 import jakarta.persistence.*;
 
 import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "apps")
@@ -13,10 +17,11 @@ public class App {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
+    @Convert(converter = UUIDAttributeConverter.class)
     @Column(name = "tenant_id", nullable = false)
-    private String tenantId;
+    private UUID tenantId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -36,15 +41,17 @@ public class App {
     @Column(name = "icon_background")
     private String iconBackground;
 
+    @Convert(converter = UUIDAttributeConverter.class)
     @Column(name = "app_model_config_id")
-    private String appModelConfigId;
+    private UUID appModelConfigId;
 
     @OneToOne
     @JoinColumn(name = "app_model_config_id", referencedColumnName = "id", insertable = false, updatable = false)
     private AppModelConfig appModelConfig;
 
+    @Convert(converter = UUIDAttributeConverter.class)
     @Column(name = "workflow_id")
-    private String workflowId;
+    private UUID workflowId;
 
     @Column(name = "status", nullable = false, columnDefinition = "VARCHAR(255) DEFAULT 'normal'")
     private String status;
@@ -82,10 +89,12 @@ public class App {
     @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt=LocalDateTime.now();
 
+    @Convert(converter = UUIDAttributeConverter.class)
     @Column(name = "created_by", nullable = false)
-    private String createdBy;
+    private UUID createdBy;
 
-    @Column(name = "updated_by", nullable = false)
-    private String updatedBy;
+    @Convert(converter = UUIDAttributeConverter.class)
+    @Column(name = "updated_by")
+    private UUID updatedBy;
 
 }

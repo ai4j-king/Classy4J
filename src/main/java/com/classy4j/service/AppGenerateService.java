@@ -14,6 +14,7 @@ import com.classy4j.model.App;
 import com.classy4j.model.CompletionRequest;
 import com.classy4j.model.EndUser;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -21,6 +22,7 @@ import java.util.Map;
 /**
  * 应用生成服务
  */
+@Slf4j
 @Component
 public class AppGenerateService {
     
@@ -43,12 +45,12 @@ public class AppGenerateService {
      * @return 生成结果
      */
     public Map<String, Object> generate(App app, CompletionRequest request,boolean streaming) {
-        int maxActiveRequest = getMaxActiveRequests(app);
-        RateLimit rateLimit = RateLimit.getInstance(app.getId().toString(), maxActiveRequest);
-        String requestId = RateLimit.genRequestKey();
+//        int maxActiveRequest = getMaxActiveRequests(app);
+//        RateLimit rateLimit = RateLimit.getInstance(app.getId().toString(), maxActiveRequest);
+//        String requestId = RateLimit.genRequestKey();
         
         try {
-            requestId = rateLimit.enter(requestId);
+//            requestId = rateLimit.enter(requestId);
             
             switch (app.getMode()) {
                 case "completion":
@@ -56,7 +58,9 @@ public class AppGenerateService {
                 case "agent_chat":
                     return null;
                 case "chat":
-                    return  chatAppGenerator.generate(app, request);
+                    return  chatAppGenerator.generate(
+                            app, request
+                    );
 //                case "advanced_chat":
 //                    Workflow workflow = getWorkflow(app, invokeFrom);
 //                    return rateLimit.generate(
@@ -79,13 +83,14 @@ public class AppGenerateService {
         } catch (RateLimitError e) {
             throw new InvokeRateLimitError(e.getMessage());
         } catch (Exception e) {
-            rateLimit.exit(requestId);
-            throw e;
+//            rateLimit.exit(requestId);
+            log.error("Failed to generate app", e);
         } finally {
-            if (!streaming) {
-                rateLimit.exit(requestId);
-            }
+//            if (!streaming) {
+//                rateLimit.exit(requestId);
+//            }
         }
+        return null;
     }
     
     /**

@@ -1,7 +1,10 @@
 package com.classy4j.controller;
 
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import com.classy4j.repository.AppRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -25,12 +28,24 @@ public class AppController {
     @Autowired
     private AppService appService;
 
+    @Autowired
+    private AppRepository appRepository;
+
+    private static UUID defTenantId = UUID.fromString("70a70885-be37-49e5-92f6-0fd221e8175b");
+    private static UUID defUserId = UUID.fromString("3fbbacdd-28ba-4e05-a29a-89fd5cfbea5f");
+
     @GetMapping("/listApps")
     public ResponseEntity<Page<App>> getApps(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "20") int limit,
-            @RequestParam(defaultValue = "tenantId") String tenantId,
-            @RequestParam(defaultValue = "dcy") String userId) {
+            @RequestParam(required = false) UUID tenantId,
+            @RequestParam(required = false) UUID userId) {
+        if (tenantId == null){
+            tenantId = defTenantId;
+        }
+        if (userId == null){
+            userId = defUserId;
+        }
         Page<App> apps = appService.getPaginateApps(userId, tenantId, page, limit);
         return ResponseEntity.ok(apps);
     }
@@ -39,8 +54,8 @@ public class AppController {
     public ResponseEntity<App> createApp(
             @RequestBody Map<String, String> payload) {
         App app = appService.createApp(
-                "dcy",
-                "tenantId",
+                defUserId,
+                defTenantId,
                 payload.get("name"),
                 payload.get("description"),
                 payload.get("mode"));
@@ -49,7 +64,7 @@ public class AppController {
 
     @PutMapping("/{id}")
     public ResponseEntity<App> updateApp(
-            @PathVariable String id,
+            @PathVariable UUID id,
             @RequestBody Map<String, String> payload) {
         return appService.getApp(id)
                 .map(app -> ResponseEntity.ok(
@@ -61,7 +76,7 @@ public class AppController {
 
     @PutMapping("/{id}/icon")
     public ResponseEntity<App> updateAppIcon(
-            @PathVariable String id,
+            @PathVariable UUID id,
             @RequestBody Map<String, String> payload) {
         return appService.getApp(id)
                 .map(app -> ResponseEntity.ok(
@@ -74,7 +89,7 @@ public class AppController {
 
     @PutMapping("/{id}/site-enable")
     public ResponseEntity<App> updateAppSiteStatus(
-            @PathVariable String id,
+            @PathVariable UUID id,
             @RequestBody Map<String, Boolean> payload) {
         return appService.getApp(id)
                 .map(app -> ResponseEntity.ok(
@@ -85,7 +100,7 @@ public class AppController {
 
     @PutMapping("/{id}/api-enable")
     public ResponseEntity<App> updateAppApiStatus(
-            @PathVariable String id,
+            @PathVariable UUID id,
             @RequestBody Map<String, Boolean> payload) {
         return appService.getApp(id)
                 .map(app -> ResponseEntity.ok(
@@ -95,14 +110,14 @@ public class AppController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<App> getAppById(@PathVariable String id) {
+    public ResponseEntity<App> getAppById(@PathVariable UUID id) {
         return appService.getApp(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteApp(@PathVariable String id) {
+    public ResponseEntity<Void> deleteApp(@PathVariable UUID id) {
         appService.deleteApp(id);
         return ResponseEntity.noContent().build();
     }

@@ -1,9 +1,15 @@
 package com.classy4j.model;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
+import com.classy4j.config.ObjectToJsonConverter;
+import com.classy4j.entity.bo.ModelConfigReq;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "app_model_configs")
@@ -11,10 +17,11 @@ import lombok.Data;
 public class AppModelConfig {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
-    @Column(name = "app_id", nullable = false)
-    private String appId;
+    @JdbcTypeCode(SqlTypes.UUID)
+    @Column(name = "app_id", nullable = false,columnDefinition = "uuid")
+    private UUID appId;
 
     @Column(name = "provider")
     private String provider;
@@ -29,19 +36,24 @@ public class AppModelConfig {
     private String suggestedQuestions;
 
     @Column(name = "suggested_questions_after_answer", columnDefinition = "TEXT")
-    private String suggestedQuestionsAfterAnswer;
+    @JdbcTypeCode(SqlTypes.JSON)
+    private ModelConfigReq.SuggestedQuestionsAfterAnswer suggestedQuestionsAfterAnswer;
+
 
     @Column(name = "speech_to_text", columnDefinition = "TEXT")
-    private String speechToText;
+     @JdbcTypeCode(SqlTypes.JSON)
+    private ModelConfigReq.SpeechToText speechToText;
 
     @Column(name = "text_to_speech", columnDefinition = "TEXT")
-    private String textToSpeech;
+    @JdbcTypeCode(SqlTypes.JSON)
+    private ModelConfigReq.TextToSpeech textToSpeech;
 
     @Column(name = "more_like_this", columnDefinition = "TEXT")
     private String moreLikeThis;
 
     @Column(name = "model", columnDefinition = "TEXT")
-    private String model;
+     @JdbcTypeCode(SqlTypes.JSON)
+    private ModelConfigReq.Model model;
 
     @Column(name = "user_input_form", columnDefinition = "TEXT")
     private String userInputForm;
@@ -53,13 +65,16 @@ public class AppModelConfig {
     private String prePrompt;
 
     @Column(name = "agent_mode", columnDefinition = "TEXT")
-    private String agentMode;
+     @JdbcTypeCode(SqlTypes.JSON)
+    private ModelConfigReq.AgentMode agentMode;
 
     @Column(name = "sensitive_word_avoidance", columnDefinition = "TEXT")
-    private String sensitiveWordAvoidance;
+     @JdbcTypeCode(SqlTypes.JSON)
+    private ModelConfigReq.SensitiveWordAvoidance sensitiveWordAvoidance;
 
     @Column(name = "retriever_resource", columnDefinition = "TEXT")
-    private String retrieverResource;
+     @JdbcTypeCode(SqlTypes.JSON)
+    private ModelConfigReq.RetrieverResource retrieverResource;
 
     @Column(name = "prompt_type", nullable = false)
     private String promptType = "simple";
@@ -71,22 +86,24 @@ public class AppModelConfig {
     private String completionPromptConfig;
 
     @Column(name = "dataset_configs", columnDefinition = "TEXT")
-    private String datasetConfigs;
+     @JdbcTypeCode(SqlTypes.JSON)
+    private ModelConfigReq.DatasetConfigs datasetConfigs;
 
     @Column(name = "external_data_tools", columnDefinition = "TEXT")
     private String externalDataTools;
 
     @Column(name = "file_upload", columnDefinition = "TEXT")
-    private String fileUpload;
+     @JdbcTypeCode(SqlTypes.JSON)
+    private ModelConfigReq.FileUpload fileUpload;
 
     @Column(name = "created_by")
-    private String createdBy;
+    private UUID createdBy;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_by")
-    private String updatedBy;
+    private UUID updatedBy;
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;

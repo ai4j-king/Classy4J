@@ -1,0 +1,19 @@
+curl 'http://127.0.0.1:5001/console/api/apps/9ece34cf-891e-4509-9fed-21907ac30237/model-config' \
+  -H 'Accept: */*' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiM2ZiYmFjZGQtMjhiYS00ZTA1LWEyOWEtODlmZDVjZmJlYTVmIiwiZXhwIjoxNzQzNTk0NDQ4LCJpc3MiOiJTRUxGX0hPU1RFRCIsInN1YiI6IkNvbnNvbGUgQVBJIFBhc3Nwb3J0In0.IoYVYV-Wa3uB3pO6PdWgVwL4-tNEqRqlN8jwcfCsvQ4' \
+  -H 'Connection: keep-alive' \
+  -H 'Origin: http://localhost:3000' \
+  -H 'Referer: http://localhost:3000/' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: cross-site' \
+  -H 'Sec-Fetch-Storage-Access: active' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36' \
+  -H 'content-type: application/json' \
+  -H 'sec-ch-ua: "Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  --data-raw '{"pre_prompt":"提示词BBB","prompt_type":"simple","chat_prompt_config":{},"completion_prompt_config":{},"user_input_form":[],"dataset_query_variable":"","more_like_this":{"enabled":false},"opening_statement":"","suggested_questions":[],"sensitive_word_avoidance":{"enabled":false,"type":"","configs":[]},"speech_to_text":{"enabled":false},"text_to_speech":{"enabled":false,"voice":"","language":""},"file_upload":{"image":{"detail":"high","enabled":false,"number_limits":3,"transfer_methods":["remote_url","local_file"]},"enabled":false,"allowed_file_types":[],"allowed_file_extensions":[".JPG",".JPEG",".PNG",".GIF",".WEBP",".SVG",".MP4",".MOV",".MPEG",".MPGA"],"allowed_file_upload_methods":["remote_url","local_file"],"number_limits":3},"suggested_questions_after_answer":{"enabled":false},"retriever_resource":{"enabled":true},"agent_mode":{"enabled":false,"max_iteration":5,"strategy":"function_call","tools":[]},"model":{"provider":"langgenius/deepseek/deepseek","name":"deepseek-chat","mode":"chat","completion_params":{"stop":[]}},"dataset_configs":{"retrieval_model":"multiple","top_k":4,"reranking_enable":false,"datasets":{"datasets":[]}}}'
+
+  {"result": "success"}

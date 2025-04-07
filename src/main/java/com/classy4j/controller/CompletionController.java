@@ -4,6 +4,7 @@ import com.classy4j.model.CompletionRequest;
 import com.classy4j.model.CompletionResponse;
 import com.classy4j.model.CompletionMessage;
 import com.classy4j.service.AppGenerateService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.MediaType;
@@ -17,10 +18,13 @@ import com.classy4j.exception.*;
 import java.util.Map;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/apps")
 public class CompletionController {
+
     @Autowired
     private AppService appService;
 
@@ -29,7 +33,7 @@ public class CompletionController {
 
     @PostMapping(value = "/{appId}/chat-messages")
     public ResponseEntity<?> generateCompletion(
-            @PathVariable String appId,
+            @PathVariable UUID appId,
             @RequestBody CompletionRequest request) {
         try {
             // 验证应用模式
@@ -53,8 +57,9 @@ public class CompletionController {
         } catch (AppException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("Internal server error");
+            log.error("Failed to generate completion: " + e.getMessage(), e);
         }
+        return ResponseEntity.internalServerError().body("Internal server error");
     }
 
     @PostMapping("/messages/{taskId}/stop")

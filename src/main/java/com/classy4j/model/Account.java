@@ -20,4 +20,6 @@ public class Account {
     private String password;
     private boolean active;
     private String role;
+
+    private String currentTenantId;
 }

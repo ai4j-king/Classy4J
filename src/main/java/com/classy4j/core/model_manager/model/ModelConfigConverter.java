@@ -9,33 +9,6 @@ import com.classy4j.model.AppModelConfig;
  * 模型配置转换器，用于在不同模型配置格式之间进行转换
  */
 public class ModelConfigConverter {
-    /**
-     * 将应用模型配置转换为模型配置
-     *
-     * @param appModelConfig 应用模型配置
-     * @return 模型配置
-     */
-    public static ModelConfig convertToModelConfig(AppModelConfig appModelConfig) {
-        if (appModelConfig == null) {
-            return null;
-        }
-
-        ModelConfig modelConfig = new ModelConfig();
-        modelConfig.setProvider(appModelConfig.getProvider());
-        modelConfig.setModel(appModelConfig.getModel());
-
-        // 设置模型参数
-        Map<String, Object> completionParams = new HashMap<>();
-        // 添加默认参数
-        completionParams.put("temperature", 0.7);
-        completionParams.put("max_tokens", 2000);
-        completionParams.put("top_p", 1.0);
-        completionParams.put("frequency_penalty", 0.0);
-        completionParams.put("presence_penalty", 0.0);
-
-        modelConfig.setCompletionParams(completionParams);
-        return modelConfig;
-    }
 
     /**
      * 将模型配置转换为Map格式

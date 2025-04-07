@@ -3,7 +3,9 @@ package com.classy4j.service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
+import com.classy4j.entity.bo.ModelConfigReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,24 +17,6 @@ import com.classy4j.repository.AppModelConfigRepository;
 public class AppModelConfigService {
     @Autowired
     private AppModelConfigRepository appModelConfigRepository;
-
-    public void validateConfiguration(AppModelConfig config, String mode) {
-        // TODO: 实现配置验证逻辑
-        // 1. 检查配置是否包含必要的字段
-        // 2. 验证字段值的合法性
-        // 3. 根据不同的应用模式进行特定验证
-        if (config == null) {
-            throw new IllegalArgumentException("Configuration cannot be null");
-        }
-
-        // 验证必要字段
-        if (config.getProvider() == null || config.getProvider().isEmpty()) {
-            throw new IllegalArgumentException("Provider is required");
-        }
-        if (config.getModelId() == null || config.getModelId().isEmpty()) {
-            throw new IllegalArgumentException("Model ID is required");
-        }
-    }
 
 
     @Transactional
@@ -58,6 +42,6 @@ public class AppModelConfigService {
     }
 
     public void delete(String id) {
-        appModelConfigRepository.deleteById(id);
+        appModelConfigRepository.deleteById(UUID.fromString(id));
     }
 }

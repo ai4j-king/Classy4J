@@ -41,11 +41,4 @@ public class TenantAccountJoin {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "tenant_id", insertable = false, updatable = false)
-    private Tenant tenant;
-
-    @ManyToOne
-    @JoinColumn(name = "account_id", insertable = false, updatable = false)
-    private Account account;
 }
