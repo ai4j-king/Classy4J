@@ -1,0 +1,116 @@
+curl 'http://127.0.0.1:5001/console/api/workspaces/current/tool-providers'
+
+[
+    {
+        "id": "code",
+        "author": "Dify",
+        "name": "code",
+        "plugin_id": null,
+        "plugin_unique_identifier": "",
+        "description": {
+            "zh_Hans": "\u8fd0\u884c\u4e00\u6bb5\u4ee3\u7801\u5e76\u8fd4\u56de\u7ed3\u679c\u3002",
+            "en_US": "Run a piece of code and get the result back.",
+            "pt_BR": "Execute um trecho de c\u00f3digo e obtenha o resultado de volta.",
+            "ja_JP": "Run a piece of code and get the result back."
+        },
+        "icon": "http://127.0.0.1:5001/console/api/workspaces/current/tool-provider/builtin/code/icon",
+        "label": {
+            "zh_Hans": "\u4ee3\u7801\u89e3\u91ca\u5668",
+            "en_US": "Code Interpreter",
+            "pt_BR": "Interpretador de C\u00f3digo",
+            "ja_JP": "Code Interpreter"
+        },
+        "type": "builtin",
+        "team_credentials": {},
+        "is_team_authorization": true,
+        "allow_delete": false,
+        "tools": [],
+        "labels": [
+            "productivity"
+        ]
+    },
+    {
+        "id": "time",
+        "author": "Dify",
+        "name": "time",
+        "plugin_id": null,
+        "plugin_unique_identifier": "",
+        "description": {
+            "zh_Hans": "\u4e00\u4e2a\u7528\u4e8e\u83b7\u53d6\u5f53\u524d\u65f6\u95f4\u7684\u5de5\u5177\u3002",
+            "en_US": "A tool for getting the current time.",
+            "pt_BR": "A tool for getting the current time.",
+            "ja_JP": "A tool for getting the current time."
+        },
+        "icon": "http://127.0.0.1:5001/console/api/workspaces/current/tool-provider/builtin/time/icon",
+        "label": {
+            "zh_Hans": "\u65f6\u95f4",
+            "en_US": "CurrentTime",
+            "pt_BR": "CurrentTime",
+            "ja_JP": "CurrentTime"
+        },
+        "type": "builtin",
+        "team_credentials": {},
+        "is_team_authorization": true,
+        "allow_delete": false,
+        "tools": [],
+        "labels": [
+            "utilities"
+        ]
+    },
+    {
+        "id": "webscraper",
+        "author": "Dify",
+        "name": "webscraper",
+        "plugin_id": null,
+        "plugin_unique_identifier": "",
+        "description": {
+            "zh_Hans": "\u4e00\u4e2a\u7528\u4e8e\u6293\u53d6\u7f51\u9875\u7684\u5de5\u5177\u3002",
+            "en_US": "Web Scrapper tool kit is used to scrape web",
+            "pt_BR": "Web Scrapper tool kit is used to scrape web",
+            "ja_JP": "Web Scrapper tool kit is used to scrape web"
+        },
+        "icon": "http://127.0.0.1:5001/console/api/workspaces/current/tool-provider/builtin/webscraper/icon",
+        "label": {
+            "zh_Hans": "\u7f51\u9875\u6293\u53d6",
+            "en_US": "WebScraper",
+            "pt_BR": "WebScraper",
+            "ja_JP": "WebScraper"
+        },
+        "type": "builtin",
+        "team_credentials": {},
+        "is_team_authorization": true,
+        "allow_delete": false,
+        "tools": [],
+        "labels": [
+            "productivity"
+        ]
+    },
+    {
+        "id": "audio",
+        "author": "hjlarry",
+        "name": "audio",
+        "plugin_id": null,
+        "plugin_unique_identifier": "",
+        "description": {
+            "zh_Hans": "\u4e00\u4e2a\u7528\u4e8e\u6587\u672c\u8f6c\u8bed\u97f3\u548c\u8bed\u97f3\u8f6c\u6587\u672c\u7684\u5de5\u5177\u3002",
+            "en_US": "A tool for tts and asr.",
+            "pt_BR": "A tool for tts and asr.",
+            "ja_JP": "A tool for tts and asr."
+        },
+        "icon": "http://127.0.0.1:5001/console/api/workspaces/current/tool-provider/builtin/audio/icon",
+        "label": {
+            "zh_Hans": "Audio",
+            "en_US": "Audio",
+            "pt_BR": "Audio",
+            "ja_JP": "Audio"
+        },
+        "type": "builtin",
+        "team_credentials": {},
+        "is_team_authorization": true,
+        "allow_delete": false,
+        "tools": [],
+        "labels": [
+            "utilities"
+        ]
+    }
+]
