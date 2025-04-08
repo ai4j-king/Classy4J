@@ -5,6 +5,10 @@ spring:
     openai:
       api-key: ${OPENAI_API_KEY}
       base-url: https://api.openai-hk.com
+
+    alibaba:
+      functioncalling:
+        baidusearch: true
       
 #  兼容其他OpenAI格式的大模型配置示例
 #  以下为字节火山引擎·方舟大模型(Ark LLM)配置示例

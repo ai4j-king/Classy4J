@@ -33,7 +33,7 @@ public class CompletionController {
 
     @PostMapping(value = "/{appId}/chat-messages")
     public ResponseEntity<?> generateCompletion(
-            @PathVariable UUID appId,
+            @PathVariable("appId") UUID appId,
             @RequestBody CompletionRequest request) {
         try {
             // 验证应用模式

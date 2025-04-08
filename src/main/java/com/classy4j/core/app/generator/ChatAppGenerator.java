@@ -5,7 +5,6 @@ import com.classy4j.model.*;
 import com.classy4j.service.ProviderService;
 
 import com.google.common.collect.Lists;
-import io.github.pigmesh.ai.deepseek.core.OpenAiClient;
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.SystemMessage;

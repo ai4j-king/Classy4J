@@ -36,8 +36,8 @@ public class AppController {
 
     @GetMapping("/listApps")
     public ResponseEntity<Page<App>> getApps(
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "20") int limit,
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "20") Integer limit,
             @RequestParam(required = false) UUID tenantId,
             @RequestParam(required = false) UUID userId) {
         if (tenantId == null){

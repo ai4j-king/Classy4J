@@ -140,6 +140,9 @@ public class ModelConfigReq {
         private int maxIteration;
 
         private String strategy;
+
+        private String prompt;
+
         private List<Object> tools;
     }
 
