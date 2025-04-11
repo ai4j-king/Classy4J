@@ -10,9 +10,11 @@ import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.ai.model.function.FunctionCallbackResolver;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.ai.openai.api.OpenAiApi;
+import org.springframework.ai.retry.RetryUtils;
 import org.springframework.stereotype.Service;
 import org.testcontainers.shaded.com.google.common.collect.Maps;
 
@@ -23,6 +25,9 @@ public class AgentChatAppGenerator {
 
     @Resource
     private ProviderService providerService;
+
+    @Resource
+    FunctionCallbackResolver functionCallbackResolver;
 
     public CompletionResponse generate(CompletionRequest request) {
         // TODO: Implement agent chat generation logic
@@ -41,7 +46,8 @@ public class AgentChatAppGenerator {
         // 动态创建OpenAiChatModel
         OpenAiChatOptions customOptions = OpenAiChatOptions.builder()
                 .model(modelConfig.getModel().getName()).build();
-        OpenAiChatModel chatModel = new OpenAiChatModel(openAiApi,customOptions);
+        OpenAiChatModel chatModel = new OpenAiChatModel(openAiApi,customOptions,
+                functionCallbackResolver, RetryUtils.DEFAULT_RETRY_TEMPLATE);
         ChatClient chatClient = ChatClient.builder(chatModel)
                 // 实现 Chat Memory 的 Advisor
                 // 在使用 Chat Memory 时，需要指定对话 ID，以便 Spring AI 处理上下文。
@@ -58,8 +64,10 @@ public class AgentChatAppGenerator {
                                 .topP(0.7)
                                 .build()
                 )
+                .defaultTools("getWeatherServiceFunction")
                 .build();
-        String answer = chatClient.prompt().user(request.getQuery()).call().content();
+        String answer = chatClient.prompt().system(modelConfig.getPrePrompt())
+                .user(request.getQuery()).call().content();
 
         Map<String, Object> response = Maps.newHashMap();
         response.put("answer", answer);

@@ -31,6 +31,10 @@ public class AppGenerateService {
 
     @Resource
     private ChatAppGenerator chatAppGenerator;
+
+
+    @Resource
+    private AgentChatAppGenerator agentChatAppGenerator;
     
 //    public AppGenerateService(LLMGenerator llmGenerator, ModelManager modelManager) {
 //        this.llmGenerator = llmGenerator;
@@ -55,8 +59,8 @@ public class AppGenerateService {
             switch (app.getMode()) {
                 case "completion":
                     return null;
-                case "agent_chat":
-                    return null;
+                case "agent-chat":
+                    return agentChatAppGenerator.generate(app, request);
                 case "chat":
                     return  chatAppGenerator.generate(
                             app, request

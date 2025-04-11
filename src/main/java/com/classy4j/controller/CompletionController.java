@@ -40,9 +40,9 @@ public class CompletionController {
             App app = appService.getApp(appId)
                     .orElseThrow(() -> new AppException("App not found"));
             
-            if (!"chat".equals(app.getMode())) {
-                throw new NotCompletionAppException("This app is not in chat mode");
-            }
+//            if (!"chat".equals(app.getMode())) {
+//                throw new NotCompletionAppException("This app is not in chat mode");
+//            }
 
             // 处理生成请求
             Map<String, Object> response = appGenerateService.generate(

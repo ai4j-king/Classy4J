@@ -9,6 +9,7 @@ import com.classy4j.system.ModelProvider;
 import com.google.common.collect.Lists;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
@@ -41,14 +42,22 @@ public class ModelController {
     @GetMapping("/models/model-types/{modelType}")
     public ResponseEntity<ModelResponse> getModelsByModelType(
             @PathVariable String modelType) {
-        // 读取资源文件
-        Pair<ModelProvider, List<ModelConfig>> providerListPair = getProviderAndConfig("deepseek");
         ModelResponse modelResponse = new ModelResponse();
+
+        com.classy4j.entity.bo.ModelProvider modelProviderResp = getModelProvider("deepseek");
+        com.classy4j.entity.bo.ModelProvider modelProviderResp2 = getModelProvider("tongyi");
+
+        modelResponse.setData(Lists.newArrayList(modelProviderResp,modelProviderResp2));
+        return ResponseEntity.ok(modelResponse);
+    }
+
+    private com.classy4j.entity.bo.@NotNull ModelProvider getModelProvider(String provider) {
+        // 读取资源文件
+        Pair<ModelProvider, List<ModelConfig>> providerListPair = getProviderAndConfig(provider);
         com.classy4j.entity.bo.ModelProvider modelProviderResp = new com.classy4j.entity.bo.ModelProvider();
         BeanUtils.copyProperties(providerListPair.getKey(), modelProviderResp);
         modelProviderResp.setModels(providerListPair.getRight());
-        modelResponse.setData(Lists.newArrayList(modelProviderResp));
-        return ResponseEntity.ok(modelResponse);
+        return modelProviderResp;
     }
 
     private Pair<ModelProvider, List<ModelConfig>> getProviderAndConfig(String provider) {
