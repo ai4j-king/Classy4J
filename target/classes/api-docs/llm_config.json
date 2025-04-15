@@ -1,0 +1,7 @@
+{
+    "api_key" : "SFlCUklEOgWvumj6AOYqIo5sWOcE9CBrVIvBgjevSQX35wQsMi+Wlaq7M+kBq3V5/uh+01A3Zp+NDN597RoLi3ndwKYN7g65i22ASBmfch8PS99BSDzlb5WpCu2U5W8FL19StTep/3NncFVFZ7WzxYKJbGkdxte0/oIdhoBmo7ckYGu+nNGsYzjFvOrgXib6GjPxp5WO7o3t+3szNxyWy2NB2wkgYNlMneiQc/w0zSCvi3sBNVoNt1ikDm1sEWa/Jm5R257UrKBvSPpaj3K7BhAx23j2BI97YQylrKW0UM1vluORYr90yOah+52JnMNrEuJo4rty2AYTGk42/VToCf3Q5yix6tR3yIPYCPRwrjLpRqC/TA8ZQW9l21BK674tq0/cb+EJRK2iGlTAHB2giHu6KgaZNcd6H2gdaNlcC0x+61zS3fQ/nE7F",
+    "endpoint_url" : "https://api.deepseek.com",
+    "function_calling_type" : "tool_call",
+    "mode" : "chat",
+    "stream_function_calling" : "support"
+  }

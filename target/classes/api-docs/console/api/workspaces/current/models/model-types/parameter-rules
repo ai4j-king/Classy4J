@@ -1,0 +1,143 @@
+GET /console/api/workspaces/current/model-providers/langgenius/deepseek/deepseek/models/parameter-rules?model=deepseek-chat HTTP/1.1
+
+
+{
+    "data": [
+        {
+            "name": "temperature",
+            "use_template": "temperature",
+            "label": {
+                "zh_Hans": "\u6e29\u5ea6",
+                "en_US": "Temperature"
+            },
+            "type": "float",
+            "help": {
+                "zh_Hans": "\u63a7\u5236\u751f\u6210\u7ed3\u679c\u7684\u591a\u6837\u6027\u548c\u968f\u673a\u6027\u3002\u6570\u503c\u8d8a\u5c0f\uff0c\u8d8a\u4e25\u8c28\uff1b\u6570\u503c\u8d8a\u5927\uff0c\u8d8a\u53d1\u6563\u3002",
+                "en_US": "Control the diversity and randomness of generated results. The smaller the value, the more rigorous it is; the larger the value, the more divergent it is."
+            },
+            "required": false,
+            "default": 1,
+            "min": 0.0,
+            "max": 2.0,
+            "precision": 2,
+            "options": []
+        },
+        {
+            "name": "max_tokens",
+            "use_template": "max_tokens",
+            "label": {
+                "zh_Hans": "\u6700\u5927\u6807\u8bb0",
+                "en_US": "Max Tokens"
+            },
+            "type": "int",
+            "help": {
+                "zh_Hans": "\u6307\u5b9a\u751f\u6210\u7ed3\u679c\u957f\u5ea6\u7684\u4e0a\u9650\u3002\u5982\u679c\u751f\u6210\u7ed3\u679c\u622a\u65ad\uff0c\u53ef\u4ee5\u8c03\u5927\u8be5\u53c2\u6570\u3002",
+                "en_US": "Specifies the upper limit on the length of generated results. If the generated results are truncated, you can increase this parameter."
+            },
+            "required": false,
+            "default": 4096,
+            "min": 1.0,
+            "max": 8192.0,
+            "precision": 0,
+            "options": []
+        },
+        {
+            "name": "top_p",
+            "use_template": "top_p",
+            "label": {
+                "zh_Hans": "Top P",
+                "en_US": "Top P"
+            },
+            "type": "float",
+            "help": {
+                "zh_Hans": "\u63a7\u5236\u751f\u6210\u7ed3\u679c\u7684\u968f\u673a\u6027\u3002\u6570\u503c\u8d8a\u5c0f\uff0c\u968f\u673a\u6027\u8d8a\u5f31\uff1b\u6570\u503c\u8d8a\u5927\uff0c\u968f\u673a\u6027\u8d8a\u5f3a\u3002\u4e00\u822c\u800c\u8a00\uff0ctop_p \u548c temperature \u4e24\u4e2a\u53c2\u6570\u9009\u62e9\u4e00\u4e2a\u8fdb\u884c\u8c03\u6574\u5373\u53ef\u3002",
+                "en_US": "Control the randomness of generated results. The smaller the value, the weaker the randomness; the larger the value, the stronger the randomness. Generally speaking, you can adjust one of the two parameters top_p and temperature."
+            },
+            "required": false,
+            "default": 1,
+            "min": 0.01,
+            "max": 1.0,
+            "precision": 2,
+            "options": []
+        },
+        {
+            "name": "logprobs",
+            "use_template": null,
+            "label": {
+                "zh_Hans": "Logprobs",
+                "en_US": "Logprobs"
+            },
+            "type": "boolean",
+            "help": {
+                "zh_Hans": "\u662f\u5426\u8fd4\u56de\u6240\u8f93\u51fa token \u7684\u5bf9\u6570\u6982\u7387\u3002\u5982\u679c\u4e3a true\uff0c\u5219\u5728 message \u7684 content \u4e2d\u8fd4\u56de\u6bcf\u4e2a\u8f93\u51fa token \u7684\u5bf9\u6570\u6982\u7387\u3002",
+                "en_US": "Whether to return the log probability of the output token. If true, returns the log probability of each output token in the content of message ."
+            },
+            "required": false,
+            "default": null,
+            "min": null,
+            "max": null,
+            "precision": null,
+            "options": []
+        },
+        {
+            "name": "top_logprobs",
+            "use_template": null,
+            "label": {
+                "zh_Hans": "Top Logprobs",
+                "en_US": "Top Logprobs"
+            },
+            "type": "int",
+            "help": {
+                "zh_Hans": "\u4e00\u4e2a\u4ecb\u4e8e 0 \u5230 20 \u4e4b\u95f4\u7684\u6574\u6570 N\uff0c\u6307\u5b9a\u6bcf\u4e2a\u8f93\u51fa\u4f4d\u7f6e\u8fd4\u56de\u8f93\u51fa\u6982\u7387 top N \u7684 token\uff0c\u4e14\u8fd4\u56de\u8fd9\u4e9b token \u7684\u5bf9\u6570\u6982\u7387\u3002\u6307\u5b9a\u6b64\u53c2\u6570\u65f6\uff0clogprobs \u5fc5\u987b\u4e3a true\u3002",
+                "en_US": "An integer N between 0 and 20, specifying that each output position returns the top N tokens with output probability, and returns the logarithmic probability of these tokens. When specifying this parameter, logprobs must be true."
+            },
+            "required": false,
+            "default": 0,
+            "min": 0.0,
+            "max": 20.0,
+            "precision": null,
+            "options": []
+        },
+        {
+            "name": "frequency_penalty",
+            "use_template": "frequency_penalty",
+            "label": {
+                "zh_Hans": "\u9891\u7387\u60e9\u7f5a",
+                "en_US": "Frequency Penalty"
+            },
+            "type": "float",
+            "help": {
+                "zh_Hans": "\u4ecb\u4e8e -2.0 \u548c 2.0 \u4e4b\u95f4\u7684\u6570\u5b57\u3002\u5982\u679c\u8be5\u503c\u4e3a\u6b63\uff0c\u90a3\u4e48\u65b0 token \u4f1a\u6839\u636e\u5176\u5728\u5df2\u6709\u6587\u672c\u4e2d\u7684\u51fa\u73b0\u9891\u7387\u53d7\u5230\u76f8\u5e94\u7684\u60e9\u7f5a\uff0c\u964d\u4f4e\u6a21\u578b\u91cd\u590d\u76f8\u540c\u5185\u5bb9\u7684\u53ef\u80fd\u6027\u3002",
+                "en_US": "A number between -2.0 and 2.0. If the value is positive, new tokens are penalized based on their frequency of occurrence in existing text, reducing the likelihood that the model will repeat the same content."
+            },
+            "required": false,
+            "default": 0,
+            "min": -2.0,
+            "max": 2.0,
+            "precision": 2,
+            "options": []
+        },
+        {
+            "name": "response_format",
+            "use_template": null,
+            "label": {
+                "zh_Hans": "\u56de\u590d\u683c\u5f0f",
+                "en_US": "Response Format"
+            },
+            "type": "string",
+            "help": {
+                "zh_Hans": "\u6307\u5b9a\u6a21\u578b\u5fc5\u987b\u8f93\u51fa\u7684\u683c\u5f0f",
+                "en_US": "specifying the format that the model must output"
+            },
+            "required": false,
+            "default": null,
+            "min": null,
+            "max": null,
+            "precision": null,
+            "options": [
+                "text",
+                "json_object"
+            ]
+        }
+    ]
+}

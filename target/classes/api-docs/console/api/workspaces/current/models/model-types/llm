@@ -1,0 +1,89 @@
+GET /console/api/workspaces/current/models/model-types/llm HTTP/1.1
+
+
+{
+   "data": [
+      {
+         "icon_large": {
+            "en_US": "http://127.0.0.1:5001/console/api/workspaces/70a70885-be37-49e5-92f6-0fd221e8175b/model-providers/langgenius/deepseek/deepseek/icon_large/en_US",
+            "zh_Hans": "http://127.0.0.1:5001/console/api/workspaces/70a70885-be37-49e5-92f6-0fd221e8175b/model-providers/langgenius/deepseek/deepseek/icon_large/zh_Hans"
+         },
+         "icon_small": {
+            "en_US": "http://127.0.0.1:5001/console/api/workspaces/70a70885-be37-49e5-92f6-0fd221e8175b/model-providers/langgenius/deepseek/deepseek/icon_small/en_US",
+            "zh_Hans": "http://127.0.0.1:5001/console/api/workspaces/70a70885-be37-49e5-92f6-0fd221e8175b/model-providers/langgenius/deepseek/deepseek/icon_small/zh_Hans"
+         },
+         "label": {
+            "en_US": "deepseek",
+            "zh_Hans": "深度求索"
+         },
+         "models": [
+            {
+               "deprecated": false,
+               "features": [
+                  "agent-thought",
+                  "tool-call",
+                  "multi-tool-call",
+                  "stream-tool-call"
+               ],
+               "fetch_from": "predefined-model",
+               "label": {
+                  "en_US": "deepseek-chat",
+                  "zh_Hans": "deepseek-chat"
+               },
+               "load_balancing_enabled": false,
+               "model": "deepseek-chat",
+               "model_properties": {
+                  "context_size": 128000,
+                  "mode": "chat"
+               },
+               "model_type": "llm",
+               "status": "active"
+            },
+            {
+               "deprecated": false,
+               "features": [
+                  "agent-thought",
+                  "tool-call",
+                  "multi-tool-call",
+                  "stream-tool-call"
+               ],
+               "fetch_from": "predefined-model",
+               "label": {
+                  "en_US": "deepseek-coder",
+                  "zh_Hans": "deepseek-coder"
+               },
+               "load_balancing_enabled": false,
+               "model": "deepseek-coder",
+               "model_properties": {
+                  "context_size": 128000,
+                  "mode": "chat"
+               },
+               "model_type": "llm",
+               "status": "active"
+            },
+            {
+               "deprecated": false,
+               "features": [
+                  "agent-thought"
+               ],
+               "fetch_from": "predefined-model",
+               "label": {
+                  "en_US": "deepseek-reasoner",
+                  "zh_Hans": "deepseek-reasoner"
+               },
+               "load_balancing_enabled": false,
+               "model": "deepseek-reasoner",
+               "model_properties": {
+                  "context_size": 128000,
+                  "mode": "chat"
+               },
+               "model_type": "llm",
+               "status": "active"
+            }
+         ],
+         "provider": "langgenius/deepseek/deepseek",
+         "status": "active",
+         "tenant_id": "70a70885-be37-49e5-92f6-0fd221e8175b"
+      }
+   ]
+}
